@@ -1,0 +1,798 @@
+/* ГИСРЭБ ИИ-Ассистент - Уникальный стиль */
+
+:root {
+    --gisreb-blue: #1a5f7a;
+    --gisreb-blue-light: #2a8fb8;
+    --gisreb-orange: #ff6b35;
+    --gisreb-orange-light: #ff8c5a;
+    --gisreb-gray: #6c757d;
+    --gisreb-gray-light: #f8f9fa;
+    --gisreb-dark: #2c3e50;
+    --gisreb-success: #28a745;
+    --gisreb-warning: #ffc107;
+    --gisreb-danger: #dc3545;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: var(--gisreb-dark);
+    min-height: 100vh;
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Темная тема */
+body.dark-theme {
+    background: #343541;
+    color: #ececf1;
+}
+
+/* Шапка с логотипом */
+.gisreb-header {
+    background: linear-gradient(90deg, var(--gisreb-blue) 0%, var(--gisreb-blue-light) 100%);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 70px;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo-icon {
+    font-size: 1.8rem;
+    background: white;
+    color: var(--gisreb-blue);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo-text h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+}
+
+.logo-text p {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Основной контейнер */
+.container {
+    max-width: 1200px;
+    margin: 80px auto 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 2rem;
+}
+
+/* Окно чата */
+.chat-container {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 180px);
+    border: 1px solid #e0e0e0;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+body.dark-theme .chat-container {
+    background: #444654;
+    border-color: #565869;
+}
+
+.chat-header {
+    background: linear-gradient(90deg, var(--gisreb-blue) 0%, var(--gisreb-blue-light) 100%);
+    color: white;
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gisreb-success);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Область сообщений */
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    background: var(--gisreb-gray-light);
+    transition: background 0.3s;
+}
+
+body.dark-theme .chat-messages {
+    background: #343541;
+}
+
+.message {
+    margin-bottom: 1.5rem;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.user-message {
+    text-align: right;
+}
+
+.bot-message {
+    text-align: left;
+}
+
+.message-bubble {
+    display: inline-block;
+    max-width: 85%;
+    padding: 1rem 1.2rem;
+    border-radius: 18px;
+    position: relative;
+    word-wrap: break-word;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+.user-message .message-bubble {
+    background: var(--gisreb-blue);
+    color: white;
+    border-bottom-right-radius: 4px;
+}
+
+.bot-message .message-bubble {
+    background: white;
+    color: var(--gisreb-dark);
+    border: 1px solid #e0e0e0;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.dark-theme .bot-message .message-bubble {
+    background: #444654;
+    color: #ececf1;
+    border-color: #565869;
+}
+
+.message-sender {
+    font-size: 0.8rem;
+    color: var(--gisreb-gray);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.dark-theme .message-sender {
+    color: #8e8ea0;
+}
+
+.message-time {
+    font-size: 0.7rem;
+    opacity: 0.7;
+}
+
+/* Анимация набора текста */
+.typing-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: var(--border-radius);
+    border: 1px solid #e0e0e0;
+}
+
+body.dark-theme .typing-indicator {
+    background: #444654;
+    border-color: #565869;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--gisreb-blue);
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Поле ввода */
+.chat-input-area {
+    padding: 1rem;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+body.dark-theme .chat-input-area {
+    background: #444654;
+    border-color: #565869;
+}
+
+.input-container {
+    display: flex;
+    gap: 0.8rem;
+    align-items: flex-end;
+}
+
+.input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+#message-input {
+    width: 100%;
+    padding: 0.8rem 1.2rem;
+    padding-right: 50px;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    resize: none;
+    min-height: 50px;
+    max-height: 120px;
+    font-family: inherit;
+    transition: all 0.3s;
+    background: white;
+    color: var(--gisreb-dark);
+}
+
+#message-input:focus {
+    outline: none;
+    border-color: var(--gisreb-blue);
+    box-shadow: 0 0 0 3px rgba(26, 95, 122, 0.1);
+}
+
+body.dark-theme #message-input {
+    background: #40414f;
+    color: #ececf1;
+    border-color: #565869;
+}
+
+body.dark-theme #message-input:focus {
+    border-color: var(--gisreb-blue-light);
+    box-shadow: 0 0 0 3px rgba(42, 143, 184, 0.3);
+}
+
+.input-actions {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--gisreb-gray);
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    color: var(--gisreb-blue);
+    background: rgba(26, 95, 122, 0.1);
+}
+
+#send-btn {
+    background: var(--gisreb-orange);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    height: 50px;
+}
+
+#send-btn:hover:not(:disabled) {
+    background: var(--gisreb-orange-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.3);
+}
+
+#send-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* Боковая панель */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.info-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid #e0e0e0;
+    transition: background 0.3s, border-color 0.3s;
+}
+
+body.dark-theme .info-card {
+    background: #444654;
+    border-color: #565869;
+}
+
+.info-card h3 {
+    color: var(--gisreb-blue);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+body.dark-theme .info-card h3 {
+    color: var(--gisreb-blue-light);
+}
+
+.info-card h3 i {
+    color: var(--gisreb-orange);
+}
+
+.quick-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.action-btn-full {
+    padding: 0.8rem 1rem;
+    background: var(--gisreb-gray-light);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    transition: all 0.2s;
+    font-size: 0.95rem;
+    color: var(--gisreb-dark);
+    text-align: left;
+}
+
+.action-btn-full:hover {
+    background: var(--gisreb-blue);
+    color: white;
+    border-color: var(--gisreb-blue);
+    transform: translateY(-1px);
+}
+
+body.dark-theme .action-btn-full {
+    background: #40414f;
+    border-color: #565869;
+    color: #ececf1;
+}
+
+body.dark-theme .action-btn-full:hover {
+    background: var(--gisreb-blue-light);
+}
+
+/* Модальное окно настроек */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 0;
+    max-width: 450px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+}
+
+body.dark-theme .modal-content {
+    background: #444654;
+    color: #ececf1;
+}
+
+.modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.dark-theme .modal-header {
+    border-bottom: 1px solid #565869;
+}
+
+.modal-header h3 {
+    color: var(--gisreb-blue);
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+body.dark-theme .modal-header h3 {
+    color: var(--gisreb-blue-light);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--gisreb-gray);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.modal-close:hover {
+    color: var(--gisreb-blue);
+    background: rgba(26, 95, 122, 0.1);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+body.dark-theme .setting-item {
+    border-bottom: 1px solid #565869;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-label {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 1rem;
+}
+
+.setting-label i {
+    color: var(--gisreb-blue);
+    width: 20px;
+}
+
+body.dark-theme .setting-label i {
+    color: var(--gisreb-blue-light);
+}
+
+/* Переключатель темы */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 54px;
+    height: 28px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: var(--gisreb-blue);
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    border-top: 1px solid #e0e0e0;
+    text-align: right;
+}
+
+body.dark-theme .modal-footer {
+    border-top: 1px solid #565869;
+}
+
+.btn-primary {
+    background: var(--gisreb-blue);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary:hover {
+    background: var(--gisreb-blue-light);
+    transform: translateY(-2px);
+}
+
+/* Подвал */
+.footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--gisreb-gray);
+    font-size: 0.9rem;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 2rem;
+}
+
+body.dark-theme .footer {
+    border-top: 1px solid #565869;
+    color: #8e8ea0;
+}
+
+.footer-sub {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.footer-sub i {
+    margin: 0 0.3rem;
+}
+
+/* Курсор для набора текста */
+.typing-cursor {
+    display: inline-block;
+    animation: blink 1s infinite;
+    color: var(--gisreb-blue);
+    margin-left: 2px;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+body.dark-theme .typing-cursor {
+    color: var(--gisreb-blue-light);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gisreb-blue);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gisreb-blue-light);
+}
+
+body.dark-theme ::-webkit-scrollbar-track {
+    background: #40414f;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb {
+    background: #565869;
+}
+
+body.dark-theme ::-webkit-scrollbar-thumb:hover {
+    background: #6b6c7b;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .sidebar {
+        order: -1;
+    }
+
+    .chat-container {
+        height: calc(100vh - 200px);
+    }
+}
+
+@media (max-width: 768px) {
+    .gisreb-header {
+        padding: 1rem;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .logo-text h1 {
+        font-size: 1.2rem;
+    }
+
+    .logo-text p {
+        display: none;
+    }
+
+    .container {
+        margin-top: 70px;
+        padding: 0 0.5rem;
+    }
+
+    .chat-container {
+        height: calc(100vh - 150px);
+    }
+
+    .chat-messages {
+        padding: 1rem;
+    }
+
+    .message-bubble {
+        max-width: 90%;
+        padding: 0.8rem 1rem;
+    }
+}

@@ -1,0 +1,275 @@
+/* Адаптивные стили для мобильных устройств */
+
+/* Мобильный вид */
+body.mobile-view {
+    overflow-x: hidden;
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 360px) {
+    .logo-text h1 {
+        font-size: 1.1rem;
+    }
+
+    .logo-text p {
+        display: none;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+}
+
+/* Мобильные телефоны (до 768px) */
+@media (max-width: 768px) {
+
+    /* Скрываем десктопные элементы */
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Показываем мобильные элементы */
+    .mobile-only {
+        display: block !important;
+    }
+
+    /* Упрощаем шапку */
+    .gisreb-header {
+        padding: 0.8rem 1rem;
+        height: 60px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    .header-content {
+        padding: 0;
+    }
+
+    .logo-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.4rem;
+        min-width: 40px;
+    }
+
+    .logo-text h1 {
+        font-size: 1.2rem;
+        margin-bottom: 0;
+        line-height: 1.2;
+    }
+
+    .logo-text p {
+        font-size: 0.7rem;
+        opacity: 0.8;
+        line-height: 1;
+    }
+
+    /* Основной контейнер */
+    .container {
+        margin: 60px auto 0 auto;
+        padding: 0.5rem;
+        display: block;
+        max-width: 100%;
+    }
+
+    /* Чат на весь экран */
+    .chat-container {
+        height: calc(100vh - 120px);
+        border-radius: 8px;
+        border-width: 1px;
+    }
+
+    .chat-header {
+        padding: 0.8rem 1rem;
+    }
+
+    .chat-header h2 {
+        font-size: 1rem;
+    }
+
+    .status-indicator {
+        font-size: 0.7rem;
+    }
+
+    /* Область сообщений */
+    .chat-messages {
+        padding: 1rem;
+    }
+
+    .message {
+        margin-bottom: 1rem;
+    }
+
+    .message-bubble {
+        max-width: 90%;
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+
+    .message-sender {
+        font-size: 0.75rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .message-time {
+        font-size: 0.65rem;
+    }
+
+    /* Поле ввода для мобильных */
+    .chat-input-area {
+        padding: 0.8rem;
+    }
+
+    .input-container {
+        gap: 0.5rem;
+    }
+
+    #message-input {
+        padding: 0.7rem 1rem;
+        padding-right: 40px;
+        min-height: 44px;
+        font-size: 0.95rem;
+    }
+
+    .input-actions {
+        right: 8px;
+        bottom: 8px;
+    }
+
+    #send-btn {
+        padding: 0.7rem;
+        min-width: 44px;
+        height: 44px;
+    }
+
+    #send-btn i {
+        margin: 0;
+    }
+
+    /* Сайдбар для мобильных */
+    .sidebar {
+        margin-top: 1rem;
+    }
+
+    .info-card {
+        padding: 1rem;
+    }
+
+    .action-btn-full {
+        padding: 0.7rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Модальное окно */
+    .modal-content {
+        width: 95%;
+        margin: 1rem;
+    }
+
+    .modal-header {
+        padding: 1rem;
+    }
+
+    .modal-body {
+        padding: 1rem;
+    }
+
+    /* Подвал */
+    .footer {
+        padding: 1rem;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+}
+
+/* Планшеты (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        grid-template-columns: 1fr 250px;
+        gap: 1.5rem;
+    }
+
+    .chat-container {
+        height: calc(100vh - 180px);
+    }
+
+    .sidebar {
+        gap: 1rem;
+    }
+}
+
+/* Telegram WebView специфичные стили */
+body.telegram-webview {
+    background: transparent;
+}
+
+body.telegram-webview .gisreb-header {
+    padding-top: env(safe-area-inset-top, 0.8rem);
+}
+
+/* Безопасные зоны для iPhone X и новее */
+@supports (padding: max(0px)) {
+    body.mobile-view {
+        padding-left: min(0.5rem, env(safe-area-inset-left));
+        padding-right: min(0.5rem, env(safe-area-inset-right));
+        padding-bottom: min(0.5rem, env(safe-area-inset-bottom));
+    }
+}
+
+/* Улучшенная работа с клавиатурой на мобильных */
+@media (max-height: 500px) {
+    .chat-container {
+        height: calc(100vh - 100px);
+    }
+
+    .chat-messages {
+        max-height: 60vh;
+    }
+}
+
+/* Портретная ориентация */
+@media (orientation: portrait) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+/* Альбомная ориентация */
+@media (orientation: landscape) and (max-height: 500px) {
+    .gisreb-header {
+        height: 50px;
+        padding: 0.5rem;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    .chat-container {
+        height: calc(100vh - 90px);
+    }
+
+    .chat-messages {
+        max-height: 50vh;
+    }
+}
+
+/* Высокие экраны */
+@media (min-height: 1000px) {
+    .chat-container {
+        height: calc(100vh - 200px);
+    }
+}
+
+/* Оптимизация для медленных устройств */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
